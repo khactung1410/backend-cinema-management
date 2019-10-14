@@ -60,7 +60,7 @@ Seq[Any](format.raw/*8.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2019-10-13T22:03:37.475
+                  DATE: 2019-10-14T21:54:22.782
                   SOURCE: /Volumes/DataTungDK/Documents/Scala/backend-cinema-management/app/views/main.scala.html
                   HASH: a5c4ff84ec33a9787045db34abc3a9e6ea94d20b
                   MATRIX: 987->260|1111->291|1138->292|1218->397|1254->406|1289->414|1315->419|1353->534|1383->644|1413->752|1445->757|1529->903|1566->913|1594->920|1626->925

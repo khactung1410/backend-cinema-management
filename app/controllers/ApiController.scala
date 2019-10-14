@@ -44,15 +44,18 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
         if (filterUsers.length > 0) {
           val user = filterUsers(0)
           val obj = Json.obj(
-            "id" -> user.id,
-            "username" -> user.username,
-            "password" -> user.password,
-            "fullname" -> user.fullname,
-            "address" -> user.address,
-            "phone" -> user.phone)
+            "ok" -> true,
+            "text" -> Json.obj(
+              "id" -> user.id,
+              "username" -> user.username,
+              "password" -> user.password,
+              "fullname" -> user.fullname,
+              "address" -> user.address,
+              "phone" -> user.phone,
+              "token" -> "fake-jwt-token"))
           println(obj)
           Ok(obj)
-        } else BadRequest
+        } else Ok("username or pass word is incorrect")
     }
     LoginForm.loginForm.bindFromRequest().fold(error, success)
   }
