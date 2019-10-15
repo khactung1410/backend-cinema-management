@@ -1,8 +1,9 @@
 package controllers
 
-import form.LoginForm
+import form.{ LoginForm, RegisterForm }
 import javax.inject.{ Inject, Singleton }
 import models.User
+import org.mindrot.jbcrypt.BCrypt
 import play.api.data.Form
 import play.api.i18n.Messages.Message
 import play.api.libs.json.Json
@@ -20,15 +21,15 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
     Ok("Hello, Scala!")
   }
 
-  def getPost(postId: Int) = Action { implicit request =>
-    dataRepository.getPost(postId) map { post =>
-      Ok(Json.toJson(post))
-    } getOrElse (NotFound)
-  }
+  //  def getPost(postId: Int) = Action { implicit request =>
+  //    dataRepository.getPost(postId) map { post =>
+  //      Ok(Json.toJson(post))
+  //    } getOrElse (NotFound)
+  //  }
 
-  def getComments(postId: Int) = Action { implicit request =>
-    Ok(Json.toJson(dataRepository.getComments(postId)))
-  }
+  //  def getComments(postId: Int) = Action { implicit request =>
+  //    Ok(Json.toJson(dataRepository.getComments(postId)))
+  //  }
   def getUser(id: Int) = Action { implicit request =>
     Ok(Json.toJson(dataRepository.getUser(id)))
   }
@@ -58,5 +59,25 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
         } else Ok("username or pass word is incorrect")
     }
     LoginForm.loginForm.bindFromRequest().fold(error, success)
+  }
+
+  def register() = Action { implicit request =>
+    val error = {
+      _: Form[RegisterForm] =>
+        println("ERROR MESSAGE: NOT MAPPING FORM REGISTER AND DATA FROM CLIENT")
+        BadRequest
+    }
+    val success = {
+      data: RegisterForm =>
+        dataRepository.registerUser(data) match {
+          case true => Ok("Username is already taken!")
+          case _ =>
+            val obj = Json.obj(
+              "ok" -> true,
+              "text" -> Json.obj())
+            Ok(obj)
+        }
+    }
+    RegisterForm.registerForm.bindFromRequest().fold(error, success)
   }
 }

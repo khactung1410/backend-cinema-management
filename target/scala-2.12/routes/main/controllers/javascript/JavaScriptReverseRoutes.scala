@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
-// @DATE:Tue Oct 15 16:54:13 ICT 2019
+// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
+// @DATE:Wed Oct 16 01:53:52 ICT 2019
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -18,36 +18,6 @@ package controllers.javascript {
     }
 
   
-    // @LINE:9
-    def getUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.ApiController.getUser",
-      """
-        function(id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
-        }
-      """
-    )
-  
-    // @LINE:7
-    def getPost: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.ApiController.getPost",
-      """
-        function(postId0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/post/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("postId", postId0))})
-        }
-      """
-    )
-  
-    // @LINE:8
-    def getComments: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.ApiController.getComments",
-      """
-        function(postId0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/post/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("postId", postId0)) + "/comments"})
-        }
-      """
-    )
-  
     // @LINE:6
     def ping: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApiController.ping",
@@ -59,6 +29,26 @@ package controllers.javascript {
     )
   
     // @LINE:10
+    def getUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApiController.getUser",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:12
+    def register: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApiController.register",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "api/user/register"})
+        }
+      """
+    )
+  
+    // @LINE:11
     def login: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApiController.login",
       """

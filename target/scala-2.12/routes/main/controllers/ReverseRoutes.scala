@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
-// @DATE:Tue Oct 15 16:54:13 ICT 2019
+// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
+// @DATE:Wed Oct 16 01:53:52 ICT 2019
 
 import play.api.mvc.Call
 
@@ -17,24 +17,6 @@ package controllers {
     }
 
   
-    // @LINE:9
-    def getUser(id:Int): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "api/user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
-    }
-  
-    // @LINE:7
-    def getPost(postId:Int): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "api/post/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("postId", postId)))
-    }
-  
-    // @LINE:8
-    def getComments(postId:Int): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "api/post/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("postId", postId)) + "/comments")
-    }
-  
     // @LINE:6
     def ping(): Call = {
       
@@ -42,6 +24,18 @@ package controllers {
     }
   
     // @LINE:10
+    def getUser(id:Int): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "api/user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
+    }
+  
+    // @LINE:12
+    def register(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "api/user/register")
+    }
+  
+    // @LINE:11
     def login(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "api/user/login")
