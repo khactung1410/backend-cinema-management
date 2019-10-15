@@ -1,6 +1,7 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/logback.xml,/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/target/scala-2.12/classes/logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/application.conf,/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/target/scala-2.12/classes/application.conf)[0m
-[0m[[0mdebug[0m] [0m	(/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/evolutions,/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/target/scala-2.12/classes/evolutions)[0m
-[0m[[0mdebug[0m] [0m	(/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes,/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/target/scala-2.12/classes/routes)[0m
-[0m[[0mdebug[0m] [0m	(/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/evolutions/default,/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/target/scala-2.12/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/logback.xml,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/application.conf,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/evolutions,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/evolutions)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/evolutions/default,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/evolutions/default/1.sql,/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/target/scala-2.12/classes/evolutions/default/1.sql)[0m
