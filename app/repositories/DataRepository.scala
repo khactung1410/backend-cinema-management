@@ -39,15 +39,16 @@ class DataRepository {
   def registerUser(data: RegisterForm): Boolean = {
     this.getUserByUsername(data.userName).map(_ => true)
       .recover {
-        case _ => {
-          User.createWithAttributes(
-            Symbol("username") -> data.userName,
-            Symbol("phone") -> data.phone,
-            Symbol("fullname") -> data.fullName,
-            Symbol("password") -> data.password,
-            Symbol("address") -> data.address)
-        }
+        case _ =>
+          {
+            User.createWithAttributes(
+              Symbol("username") -> data.userName,
+              Symbol("phone") -> data.phone,
+              Symbol("fullname") -> data.fullName,
+              Symbol("password") -> BCrypt.hashpw(data.password, BCrypt.gensalt(10)),
+              Symbol("address") -> data.address)
+          }
+          false
       }.get
-    false
   }
 }

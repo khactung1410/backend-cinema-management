@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Wed Oct 16 01:53:52 ICT 2019
+// @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
+// @DATE:Wed Oct 16 14:10:28 ICT 2019
 
 import play.api.mvc.Call
 
