@@ -7,11 +7,7 @@
 		revision="1.0"
 		conf="linux"
 		confs="universal, universal-docs, universal-src, compile, runtime, test, provided, optional, windows, docker, linux, web-assets, web-assets-test, web-plugin, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-<<<<<<< HEAD
-		date="20191017002543"/>
-=======
-		date="20191016140137"/>
->>>>>>> bb9f93e69f6aa82a1c4096b33e0e8879f6894930
+		date="20191021005832"/>
 	<dependencies>
 	</dependencies>
 </ivy-report>
