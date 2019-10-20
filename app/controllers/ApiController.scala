@@ -41,7 +41,7 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
     }
     val success = {
       data: LoginForm =>
-        val filterUsers = dataRepository.getAllUser().filter(user => user.username == data.username && user.password == data.password)
+        val filterUsers = dataRepository.getAllUser().filter(user => user.username == data.username && BCrypt.checkpw(data.password, user.password))
         if (filterUsers.length > 0) {
           val user = filterUsers(0)
           val obj = Json.obj(
@@ -56,7 +56,10 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
               "token" -> "fake-jwt-token"))
           println(obj)
           Ok(obj)
-        } else Ok("username or pass word is incorrect")
+        } else {
+          val obj = Json.obj("message" -> "Username or Password is incorrect!")
+          BadRequest(obj)
+        }
     }
     LoginForm.loginForm.bindFromRequest().fold(error, success)
   }
@@ -70,7 +73,9 @@ class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRep
     val success = {
       data: RegisterForm =>
         dataRepository.registerUser(data) match {
-          case true => Ok("Username is already taken!")
+          case true => {
+            BadRequest(Json.obj("message" -> s"Username ${data.userName} is already taken!"))
+          }
           case _ =>
             val obj = Json.obj(
               "ok" -> true,

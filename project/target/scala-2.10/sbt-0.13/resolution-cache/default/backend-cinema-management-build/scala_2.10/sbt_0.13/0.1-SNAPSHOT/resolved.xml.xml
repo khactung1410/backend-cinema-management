@@ -4,7 +4,11 @@
 		module="backend-cinema-management-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
+<<<<<<< HEAD
 		publication="20191017002536"
+=======
+		publication="20191016140132"
+>>>>>>> bb9f93e69f6aa82a1c4096b33e0e8879f6894930
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
