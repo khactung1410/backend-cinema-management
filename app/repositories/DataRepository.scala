@@ -36,6 +36,7 @@ class DataRepository {
       User.findBy(sqls.eq(User.defaultAlias.username, username)).get
     }
   }
+
   def registerUser(data: RegisterForm): Boolean = {
     this.getUserByUsername(data.userName).map(_ => true)
       .recover {

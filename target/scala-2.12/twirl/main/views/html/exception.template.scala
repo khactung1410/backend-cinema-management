@@ -42,7 +42,7 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2019-10-21T00:58:33.895
+                  DATE: 2019-10-21T23:47:30.105
                   SOURCE: /Volumes/DataTungDK/Documents/Scala/backend-cinema-management/app/views/exception.scala.html
                   HASH: 25e8f233aa50b0fa710fbbc2c931916649e0a909
                   MATRIX: 733->1|845->20|872->22|897->39|936->41|967->46|998->51|1026->59

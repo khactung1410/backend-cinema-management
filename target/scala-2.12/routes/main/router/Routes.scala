@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 00:58:33 ICT 2019
+// @DATE:Mon Oct 21 23:47:29 ICT 2019
 
 package router
 
@@ -15,19 +15,23 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   ApiController_0: controllers.ApiController,
+  // @LINE:13
+  ApiMovieController_1: controllers.ApiMovieController,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
-    ApiController_0: controllers.ApiController
-  ) = this(errorHandler, ApiController_0, "/")
+    ApiController_0: controllers.ApiController,
+    // @LINE:13
+    ApiMovieController_1: controllers.ApiMovieController
+  ) = this(errorHandler, ApiController_0, ApiMovieController_1, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, ApiController_0, prefix)
+    new Routes(errorHandler, ApiController_0, ApiMovieController_1, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -39,6 +43,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/""" + "$" + """id<[^/]+>""", """controllers.ApiController.getUser(id:Int)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/login""", """controllers.ApiController.login()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/register""", """controllers.ApiController.register()"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movie/add""", """controllers.ApiMovieController.add()"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -118,6 +123,24 @@ class Routes(
     )
   )
 
+  // @LINE:13
+  private[this] lazy val controllers_ApiMovieController_add4_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/movie/add")))
+  )
+  private[this] lazy val controllers_ApiMovieController_add4_invoker = createInvoker(
+    ApiMovieController_1.add(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApiMovieController",
+      "add",
+      Nil,
+      "POST",
+      this.prefix + """api/movie/add""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -143,6 +166,12 @@ class Routes(
     case controllers_ApiController_register3_route(params@_) =>
       call { 
         controllers_ApiController_register3_invoker.call(ApiController_0.register())
+      }
+  
+    // @LINE:13
+    case controllers_ApiMovieController_add4_route(params@_) =>
+      call { 
+        controllers_ApiMovieController_add4_invoker.call(ApiMovieController_1.add())
       }
   }
 }

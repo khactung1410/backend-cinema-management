@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 00:58:33 ICT 2019
+// @DATE:Mon Oct 21 23:47:29 ICT 2019
 
 import play.api.mvc.Call
 
@@ -9,6 +9,21 @@ import _root_.controllers.Assets.Asset
 
 // @LINE:6
 package controllers {
+
+  // @LINE:13
+  class ReverseApiMovieController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:13
+    def add(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "api/movie/add")
+    }
+  
+  }
 
   // @LINE:6
   class ReverseApiController(_prefix: => String) {
