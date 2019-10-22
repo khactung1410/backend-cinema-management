@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 23:47:29 ICT 2019
+// @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
+// @DATE:Tue Oct 22 16:08:15 ICT 2019
 
 package controllers;
 

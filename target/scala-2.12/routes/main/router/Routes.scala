@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 23:47:29 ICT 2019
+// @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
+// @DATE:Tue Oct 22 16:08:15 ICT 2019
 
 package router
 
@@ -44,6 +44,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/login""", """controllers.ApiController.login()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/register""", """controllers.ApiController.register()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movie/add""", """controllers.ApiMovieController.add()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movies""", """controllers.ApiMovieController.getAll()"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -141,6 +142,24 @@ class Routes(
     )
   )
 
+  // @LINE:14
+  private[this] lazy val controllers_ApiMovieController_getAll5_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/movies")))
+  )
+  private[this] lazy val controllers_ApiMovieController_getAll5_invoker = createInvoker(
+    ApiMovieController_1.getAll(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApiMovieController",
+      "getAll",
+      Nil,
+      "GET",
+      this.prefix + """api/movies""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -172,6 +191,12 @@ class Routes(
     case controllers_ApiMovieController_add4_route(params@_) =>
       call { 
         controllers_ApiMovieController_add4_invoker.call(ApiMovieController_1.add())
+      }
+  
+    // @LINE:14
+    case controllers_ApiMovieController_getAll5_route(params@_) =>
+      call { 
+        controllers_ApiMovieController_getAll5_invoker.call(ApiMovieController_1.getAll())
       }
   }
 }

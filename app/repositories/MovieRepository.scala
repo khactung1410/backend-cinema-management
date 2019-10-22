@@ -23,10 +23,15 @@ class MovieRepository {
               Symbol("name") -> data.name,
               Symbol("genre") -> data.genre,
               Symbol("director") -> data.director,
-              Symbol("publicyear") -> data.publicYear,
+              Symbol("publicYear") -> data.publicYear,
               Symbol("description") -> data.description)
           }
           false
       }.get
   }
+
+  def getAllMovie(): Try[List[Movie]] =
+    Try {
+      Movie.findAll()
+    }
 }
