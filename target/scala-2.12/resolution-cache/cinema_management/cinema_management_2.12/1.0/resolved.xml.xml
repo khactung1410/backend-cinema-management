@@ -4,7 +4,11 @@
 		module="cinema_management_2.12"
 		revision="1.0"
 		status="integration"
+<<<<<<< HEAD
 		publication="20191021110046"
+=======
+		publication="20191021234728"
+>>>>>>> f5f41015ae1ebbd5e8ed850463a67064fbffea68
 	>
 		<description>
 		cinema_management

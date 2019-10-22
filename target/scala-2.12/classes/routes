@@ -10,6 +10,7 @@ GET     /api/ping                   controllers.ApiController.ping
 GET /api/user/:id                   controllers.ApiController.getUser(id: Int)
 POST /api/user/login                controllers.ApiController.login()
 POST /api/user/register             controllers.ApiController.register()
+POST /api/movie/add                 controllers.ApiMovieController.add()
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
