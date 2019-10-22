@@ -60,13 +60,8 @@ Seq[Any](format.raw/*8.1*/("""
 
               /*
                   -- GENERATED --
-<<<<<<< HEAD
-                  DATE: 2019-10-21T11:01:16.213
+                  DATE: 2019-10-22T10:16:44.930
                   SOURCE: /Users/Tung_DK/Documents/Training/Code/backend-cinema-management/app/views/main.scala.html
-=======
-                  DATE: 2019-10-21T23:47:30.128
-                  SOURCE: /Volumes/DataTungDK/Documents/Scala/backend-cinema-management/app/views/main.scala.html
->>>>>>> f5f41015ae1ebbd5e8ed850463a67064fbffea68
                   HASH: a5c4ff84ec33a9787045db34abc3a9e6ea94d20b
                   MATRIX: 987->260|1111->291|1138->292|1218->397|1254->406|1289->414|1315->419|1353->534|1383->644|1413->752|1445->757|1529->903|1566->913|1594->920|1626->925
                   LINES: 26->7|31->8|32->9|35->12|36->13|36->13|36->13|37->14|38->15|39->16|40->17|43->21|44->22|44->22|45->23

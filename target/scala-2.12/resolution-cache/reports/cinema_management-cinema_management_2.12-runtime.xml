@@ -7,11 +7,7 @@
 		revision="1.0"
 		conf="runtime"
 		confs="universal, universal-docs, universal-src, compile, runtime, test, provided, optional, windows, docker, linux, web-assets, web-assets-test, web-plugin, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-<<<<<<< HEAD
-		date="20191021110046"/>
-=======
-		date="20191021234728"/>
->>>>>>> f5f41015ae1ebbd5e8ed850463a67064fbffea68
+		date="20191022095735"/>
 	<dependencies>
 		<module organisation="org.mindrot" name="jbcrypt">
 			<revision name="0.4" status="release" pubdate="20170214012331" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/djmdjm/jBCrypt" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="95">

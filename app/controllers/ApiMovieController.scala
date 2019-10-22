@@ -2,6 +2,7 @@ package controllers
 
 import form.AddMovieForm
 import javax.inject.{ Inject, Singleton }
+import models.Movie
 import play.api.data.Form
 import play.api.libs.json.Json
 import play.api.mvc.{ AbstractController, ControllerComponents }
@@ -33,5 +34,19 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
         }
     }
     AddMovieForm.addMovieForm.bindFromRequest().fold(error, success)
+  }
+
+  def getAll() = Action { implicit request =>
+    {
+      if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {
+        movieRepository.getAllMovie.map((listMovies: List[Movie]) => {
+          val obj = Json.obj("movies" -> listMovies)
+          Ok(obj)
+        }).get
+      } else {
+        BadRequest(Json.obj("message" -> "You're not login!"))
+      }
+
+    }
   }
 }

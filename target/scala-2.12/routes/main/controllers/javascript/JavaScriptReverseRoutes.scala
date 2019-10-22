@@ -1,11 +1,6 @@
 // @GENERATOR:play-routes-compiler
-<<<<<<< HEAD
 // @SOURCE:/Users/Tung_DK/Documents/Training/Code/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 11:01:16 ICT 2019
-=======
-// @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Mon Oct 21 23:47:29 ICT 2019
->>>>>>> f5f41015ae1ebbd5e8ed850463a67064fbffea68
+// @DATE:Tue Oct 22 16:08:15 ICT 2019
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -22,6 +17,16 @@ package controllers.javascript {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:14
+    def getAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApiMovieController.getAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/movies"})
+        }
+      """
+    )
   
     // @LINE:13
     def add: JavaScriptReverseRoute = JavaScriptReverseRoute(

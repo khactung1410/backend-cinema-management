@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-[0m[[0mdebug[0m] [0mUsing parent loader for play common classloader: sun.misc.Launcher$ExtClassLoader@1817b1b0[0m
-=======
-<<<<<<< HEAD
-[0m[[0mdebug[0m] [0mUsing parent loader for play common classloader: sun.misc.Launcher$ExtClassLoader@cb939c6[0m
-=======
-<<<<<<< HEAD
-[0m[[0mdebug[0m] [0mUsing parent loader for play common classloader: sun.misc.Launcher$ExtClassLoader@7e163dbf[0m
-=======
-[0m[[0mdebug[0m] [0mUsing parent loader for play common classloader: sun.misc.Launcher$ExtClassLoader@67b5c34b[0m
->>>>>>> 5bd5e407d1ccc4c9e467cac364b9a2186148840d
->>>>>>> 957be6c82ca70a16afbfef970d075998f21ef351
->>>>>>> f5f41015ae1ebbd5e8ed850463a67064fbffea68
+[0m[[0mdebug[0m] [0mUsing parent loader for play common classloader: sun.misc.Launcher$ExtClassLoader@248f331[0m
