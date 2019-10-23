@@ -38,9 +38,21 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
 
   def getAll() = Action { implicit request =>
     {
+      val current_page = request.rawQueryString.substring(5).toInt
+      val per_page = 10
       if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {
         movieRepository.getAllMovie.map((listMovies: List[Movie]) => {
-          val obj = Json.obj("movies" -> listMovies)
+          val total = listMovies.length
+          var total_page = 0
+          if (total % per_page == 0) total_page = total / per_page
+          else total_page = total / per_page + 1
+          val responseListMovie = listMovies.takeRight(total - (current_page - 1) * per_page).take(per_page)
+          val obj = Json.obj(
+            "current_page" -> current_page,
+            "per_page" -> per_page,
+            "total" -> total,
+            "total_page" -> total_page,
+            "movies" -> responseListMovie)
           Ok(obj)
         }).get
       } else {
