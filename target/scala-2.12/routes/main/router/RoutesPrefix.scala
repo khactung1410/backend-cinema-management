@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Tue Oct 22 21:11:33 ICT 2019
+// @DATE:Fri Oct 25 17:15:05 ICT 2019
 
 
 package router {

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Tue Oct 22 21:11:33 ICT 2019
+// @DATE:Fri Oct 25 17:15:05 ICT 2019
 
 package router
 
@@ -44,7 +44,8 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/login""", """controllers.ApiController.login()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/user/register""", """controllers.ApiController.register()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movie/add""", """controllers.ApiMovieController.add()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movies""", """controllers.ApiMovieController.getAll()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movie""", """controllers.ApiMovieController.getAll()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/movie/delete/""" + "$" + """id<[^/]+>""", """controllers.ApiMovieController.delete(id:Int)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -144,7 +145,7 @@ class Routes(
 
   // @LINE:14
   private[this] lazy val controllers_ApiMovieController_getAll5_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/movies")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/movie")))
   )
   private[this] lazy val controllers_ApiMovieController_getAll5_invoker = createInvoker(
     ApiMovieController_1.getAll(),
@@ -154,7 +155,25 @@ class Routes(
       "getAll",
       Nil,
       "GET",
-      this.prefix + """api/movies""",
+      this.prefix + """api/movie""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:15
+  private[this] lazy val controllers_ApiMovieController_delete6_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/movie/delete/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_ApiMovieController_delete6_invoker = createInvoker(
+    ApiMovieController_1.delete(fakeValue[Int]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApiMovieController",
+      "delete",
+      Seq(classOf[Int]),
+      "GET",
+      this.prefix + """api/movie/delete/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
@@ -197,6 +216,12 @@ class Routes(
     case controllers_ApiMovieController_getAll5_route(params@_) =>
       call { 
         controllers_ApiMovieController_getAll5_invoker.call(ApiMovieController_1.getAll())
+      }
+  
+    // @LINE:15
+    case controllers_ApiMovieController_delete6_route(params@_) =>
+      call(params.fromPath[Int]("id", None)) { (id) =>
+        controllers_ApiMovieController_delete6_invoker.call(ApiMovieController_1.delete(id))
       }
   }
 }

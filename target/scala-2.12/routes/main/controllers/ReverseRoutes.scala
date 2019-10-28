@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Volumes/DataTungDK/Documents/Scala/backend-cinema-management/conf/routes
-// @DATE:Tue Oct 22 21:11:33 ICT 2019
+// @DATE:Fri Oct 25 17:15:05 ICT 2019
 
 import play.api.mvc.Call
 
@@ -20,7 +20,13 @@ package controllers {
     // @LINE:14
     def getAll(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "api/movies")
+      Call("GET", _prefix + { _defaultPrefix } + "api/movie")
+    }
+  
+    // @LINE:15
+    def delete(id:Int): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "api/movie/delete/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
     }
   
     // @LINE:13

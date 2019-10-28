@@ -8,6 +8,8 @@ import play.api.libs.json.Json
 import play.api.mvc.{ AbstractController, ControllerComponents }
 import repositories.MovieRepository
 
+import scala.util.Try
+
 @Singleton
 class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: MovieRepository)
   extends AbstractController(cc) {
@@ -58,7 +60,22 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
       } else {
         BadRequest(Json.obj("message" -> "You're not login!"))
       }
+    }
+  }
 
+  def delete(id: Int) = Action { implicit request =>
+    {
+      if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {
+        movieRepository.deleteMovie(id).map((result: Int) => {
+          println(result)
+          val obj = Json.obj(
+            "ok" -> true,
+            "text" -> Json.obj())
+          Ok(obj)
+        }).get
+      } else {
+        BadRequest(Json.obj("message" -> "You're not login!"))
+      }
     }
   }
 }
