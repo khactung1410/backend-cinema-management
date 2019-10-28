@@ -34,4 +34,9 @@ class MovieRepository {
     Try {
       Movie.findAll()
     }
+  def deleteMovie(id: Int): Try[Int] = {
+    Try {
+      Movie.deleteById(id)
+    }
+  }
 }
