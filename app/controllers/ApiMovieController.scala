@@ -60,6 +60,7 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
       } else {
         BadRequest(Json.obj("message" -> "You're not login!"))
       }
+<<<<<<< HEAD
     }
   }
 
@@ -76,6 +77,8 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
       } else {
         BadRequest(Json.obj("message" -> "You're not login!"))
       }
+=======
+>>>>>>> 2ec08b57b116df3bb958eb1354ff81411029ff3e
     }
   }
 }
