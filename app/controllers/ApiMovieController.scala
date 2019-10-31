@@ -38,6 +38,10 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
     AddMovieForm.addMovieForm.bindFromRequest().fold(error, success)
   }
 
+  def getMovie(id: Int) = Action { implicit request =>
+    Ok(Json.toJson(movieRepository.getMovie(id)))
+  }
+
   def getAll() = Action { implicit request =>
     {
       val current_page = request.rawQueryString.substring(5).toInt

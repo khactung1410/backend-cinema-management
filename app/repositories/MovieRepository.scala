@@ -34,6 +34,11 @@ class MovieRepository {
     Try {
       Movie.findAll()
     }
+
+  def getMovie(id: Int): Seq[Movie] = {
+    Movie.findAllByIds(id)
+  }
+
   def deleteMovie(id: Int): Try[Int] = {
     Try {
       Movie.deleteById(id)

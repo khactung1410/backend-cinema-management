@@ -12,7 +12,8 @@ POST /api/user/login                controllers.ApiController.login()
 POST /api/user/register             controllers.ApiController.register()
 POST /api/movie/add                 controllers.ApiMovieController.add()
 GET /api/movie                      controllers.ApiMovieController.getAll()
-GET /api/movie/delete/:id            controllers.ApiMovieController.delete(id: Int)
+GET /api/movie/:id                  controllers.ApiMovieController.getMovie(id: Int)
+GET /api/movie/delete/:id           controllers.ApiMovieController.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
