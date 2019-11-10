@@ -10,12 +10,16 @@ GET     /api/ping                   controllers.ApiController.ping
 GET /api/user/:id                   controllers.ApiController.getUser(id: Int)
 POST /api/user/login                controllers.ApiController.login()
 POST /api/user/register             controllers.ApiController.register()
+
 POST /api/movie/add                 controllers.ApiMovieController.add()
 GET /api/movie/search               controllers.ApiMovieController.getAll()
 GET /api/movie                      controllers.ApiMovieController.getAll()
 GET /api/movie/:id                  controllers.ApiMovieController.getMovie(id: Int)
 GET /api/movie/delete/:id           controllers.ApiMovieController.delete(id: Int)
 PUT /api/movie/edit                 controllers.ApiMovieController.edit()
+
+GET /api/schedule                   controllers.ApiScheduleController.getAll()
+GET /api/schedule/delete/:id        controllers.ApiScheduleController.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
