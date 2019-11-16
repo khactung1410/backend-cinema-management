@@ -43,7 +43,7 @@ class MovieRepository {
 
   def getAllMovie(): Try[List[Movie]] =
     Try {
-      Movie.findAll()
+      Movie.findAll().reverse
     }
 
   def getMovie(id: Int): Seq[Movie] = {

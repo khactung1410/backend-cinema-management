@@ -1,6 +1,6 @@
 package controllers
 
-import form.{ AddMovieForm, EditMovieForm }
+import form.{ AddMovieForm, AddScheduleForm, EditMovieForm }
 import javax.inject.{ Inject, Singleton }
 import models.Schedule
 import play.api.data.Form
@@ -13,6 +13,30 @@ import scala.util.Try
 @Singleton
 class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleRepository: ScheduleRepository)
   extends AbstractController(cc) {
+
+  def add() = Action { implicit request =>
+    val error = {
+      _: Form[AddScheduleForm] =>
+        println("ERROR MESSAGE: NOT MAPPING ADD SCHEDULE FORM AND DATA FROM CLIENT")
+        BadRequest(Json.obj("message" -> "Not mapping form client with form server!"))
+    }
+    val success = {
+      data: AddScheduleForm =>
+        scheduleRepository.addSchedule(data) match {
+          case true => {
+            print(data)
+            BadRequest(Json.obj("message" -> s"Schedule with name of film ${data.name} is already taken!"))
+          }
+          case _ =>
+            print(data)
+            val obj = Json.obj(
+              "ok" -> true,
+              "text" -> Json.obj())
+            Ok(obj)
+        }
+    }
+    AddScheduleForm.addScheduleForm.bindFromRequest().fold(error, success)
+  }
 
   def getAll() = Action { implicit request =>
     {

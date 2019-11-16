@@ -87,6 +87,7 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
                 "total" -> total,
                 "total_page" -> total_page,
                 "movies" -> responseListMovie,
+                "allMovies" -> listMovies,
                 "searchingName" -> searchName)
               Ok(obj)
             }).get
@@ -105,9 +106,10 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
                 "per_page" -> per_page,
                 "total" -> total,
                 "total_page" -> total_page,
-                "movies" -> responseListMovie)
+                "movies" -> responseListMovie,
+                "allMovies" -> listMovies)
               Ok(obj)
-            }).get
+            }).getOrElse(BadRequest)
           }
         }
       } else {
