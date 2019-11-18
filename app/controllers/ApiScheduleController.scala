@@ -23,16 +23,17 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
     val success = {
       data: AddScheduleForm =>
         scheduleRepository.addSchedule(data) match {
-          case true => {
-            print(data)
-            BadRequest(Json.obj("message" -> s"Schedule with name of film ${data.name} is already taken!"))
-          }
-          case _ =>
+          case true =>
             print(data)
             val obj = Json.obj(
               "ok" -> true,
               "text" -> Json.obj())
             Ok(obj)
+          case _ => {
+            print(data)
+            BadRequest(Json.obj("message" -> s"There was a schedule already exist at that period of time!"))
+          }
+
         }
     }
     AddScheduleForm.addScheduleForm.bindFromRequest().fold(error, success)

@@ -16,10 +16,6 @@ import scala.util.Try
 class ApiController @Inject() (cc: ControllerComponents, dataRepository: DataRepository)
   extends AbstractController(cc) {
 
-  def ping = Action { implicit request =>
-    Ok("Hello, Scala!")
-  }
-
   def getUser(id: Int) = Action { implicit request =>
     Ok(Json.toJson(dataRepository.getUser(id)))
   }
