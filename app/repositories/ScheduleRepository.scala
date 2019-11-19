@@ -24,48 +24,30 @@ class ScheduleRepository {
   //    }
   //  }
 
-  def getScheduleByRoom(nameRoom: String): Try[List[Schedule]] = {
+  def getScheduleByRoom(idRoom: Int): Try[List[Schedule]] = {
     Try {
-      Schedule.findAllBy(sqls.eq(Schedule.defaultAlias.room, nameRoom))
-      //      Schedule.findBy(sqls.eq(Schedule.defaultAlias.idRoom, idRoom)).get
+      Schedule.findAllBy(sqls.eq(Schedule.defaultAlias.idRoom, idRoom))
     }
   }
 
-  def addSchedule(data: AddScheduleForm): Boolean = {
-    this.getScheduleByRoom(data.room).map(listSchedule => {
-      listSchedule.map(schedule => {
-        println(schedule.startAt < data.endAt)
-        println(data.endAt <= schedule.endAt)
-        println(schedule.startAt < data.startAt)
-        println(data.startAt <= schedule.endAt)
-        if ((schedule.startAt < data.endAt && data.endAt <= schedule.endAt) || (schedule.startAt < data.startAt && data.startAt <= schedule.endAt)) return false
+  def addSchedule(data: AddScheduleForm): Option[AddScheduleForm] = {
+    this.getScheduleByRoom(data.idRoom.toInt).map(listSchedule => {
+      val listScheduleinTime: List[Schedule] = listSchedule.filter(schedule => {
+        ((schedule.date == data.date) && (schedule.startAt < data.endAt && data.endAt <= schedule.endAt)) || ((schedule.date == data.date) && (schedule.startAt < data.startAt && data.startAt <= schedule.endAt))
       })
-      Schedule.createWithAttributes(
-        Symbol("name") -> data.name,
-        Symbol("idMovie") -> data.idMovie,
-        Symbol("idRoom") -> data.idRoom,
-        Symbol("room") -> data.room,
-        Symbol("startAt") -> data.startAt,
-        Symbol("endAt") -> data.endAt,
-        Symbol("date") -> data.date,
-        Symbol("ticketPrice") -> data.ticketPrice)
-      true
-    })
-      .recover {
-        case _ =>
-          {
-            Schedule.createWithAttributes(
-              Symbol("name") -> data.name,
-              Symbol("idMovie") -> data.idMovie,
-              Symbol("idRoom") -> data.idRoom,
-              Symbol("room") -> data.room,
-              Symbol("startAt") -> data.startAt,
-              Symbol("endAt") -> data.endAt,
-              Symbol("date") -> data.date,
-              Symbol("ticketPrice") -> data.ticketPrice)
-          }
-          true
-      }.get
+      if (listScheduleinTime.length == 0) {
+        Schedule.createWithAttributes(
+          Symbol("name") -> data.name,
+          Symbol("idMovie") -> data.idMovie,
+          Symbol("idRoom") -> data.idRoom,
+          Symbol("room") -> data.room,
+          Symbol("startAt") -> data.startAt,
+          Symbol("endAt") -> data.endAt,
+          Symbol("date") -> data.date,
+          Symbol("ticketPrice") -> data.ticketPrice)
+        Some(data)
+      } else None
+    }).get
   }
 
   def deleteSchedule(id: Int): Try[Int] = {

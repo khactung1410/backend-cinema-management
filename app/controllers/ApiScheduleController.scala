@@ -4,14 +4,16 @@ import form.{ AddMovieForm, AddScheduleForm, EditMovieForm }
 import javax.inject.{ Inject, Singleton }
 import models.Schedule
 import play.api.data.Form
+import play.api.http.Status.CONFLICT
 import play.api.libs.json.Json
 import play.api.mvc.{ AbstractController, ControllerComponents }
 import repositories.ScheduleRepository
+import services.ScheduleService
 
 import scala.util.Try
 
 @Singleton
-class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleRepository: ScheduleRepository)
+class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleRepository: ScheduleRepository, scheduleService: ScheduleService)
   extends AbstractController(cc) {
 
   def add() = Action { implicit request =>
@@ -22,7 +24,7 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
     }
     val success = {
       data: AddScheduleForm =>
-        scheduleRepository.addSchedule(data) match {
+        scheduleService.addSchedule(data) match {
           case true =>
             print(data)
             val obj = Json.obj(
@@ -31,7 +33,7 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
             Ok(obj)
           case _ => {
             print(data)
-            BadRequest(Json.obj("message" -> s"There was a schedule already exist at that period of time!"))
+            Conflict(Json.obj("message" -> s"There was a schedule already exist at that period of time!"))
           }
 
         }
