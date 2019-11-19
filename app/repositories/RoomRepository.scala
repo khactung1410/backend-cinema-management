@@ -13,7 +13,7 @@ class RoomRepository {
       Room.findAll()
     }
 
-  def getRoom(id: Int): Seq[Room] = {
-    Room.findAllByIds(id)
+  def getRoom(id: Int): Option[Room] = {
+    Room.findById(id)
   }
 }

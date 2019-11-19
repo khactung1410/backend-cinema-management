@@ -9,7 +9,7 @@ import scala.util.Try
 @Singleton
 class SeatRepository {
 
-  def getAllSeat(idRoom: Int): Try[List[Seat]] =
+  def getAllSeatByRoom(idRoom: Int): Try[List[Seat]] =
     Try {
       Seat.findAllBy(sqls.eq(Seat.defaultAlias.idRoom, idRoom))
     }

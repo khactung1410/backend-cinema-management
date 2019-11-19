@@ -2,20 +2,24 @@ package services
 import form.{ AddMovieForm, AddScheduleForm, EditMovieForm }
 import javax.inject.{ Inject, Singleton }
 import models.Schedule
-import repositories.{ ScheduleRepository, SeatRepository }
+import repositories.{ RoomRepository, ScheduleRepository, SeatRepository, SeatStatusRepository }
 import scalikejdbc.sqls
 
 import scala.util.Try
 
 @Singleton
-class ScheduleService @Inject() (scheduleRepository: ScheduleRepository, seatRepository: SeatRepository) {
+class ScheduleService @Inject() (scheduleRepository: ScheduleRepository, roomRepository: RoomRepository, seatRepository: SeatRepository, seatStatusRepository: SeatStatusRepository) {
 
   def addSchedule(data: AddScheduleForm): Boolean = {
-    scheduleRepository.addSchedule(data) match {
+    val room = roomRepository.getRoom(data.idRoom.toInt).get
+    println("roooom: " + room)
+    scheduleRepository.addSchedule(data, room.totalSeat.toInt) match {
       case Some(newSchedule) => {
         val idRoom = newSchedule.idRoom.toInt
-        val listSeat = seatRepository.getAllSeat(idRoom).get
-
+        val listSeat = seatRepository.getAllSeatByRoom(idRoom).get
+        listSeat.map(seat => {
+          seatStatusRepository.addSeatStatus(data, seat)
+        })
         true
       }
       case None => false

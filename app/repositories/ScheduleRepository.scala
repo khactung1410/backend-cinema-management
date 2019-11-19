@@ -30,7 +30,7 @@ class ScheduleRepository {
     }
   }
 
-  def addSchedule(data: AddScheduleForm): Option[AddScheduleForm] = {
+  def addSchedule(data: AddScheduleForm, totalSeat: Int): Option[AddScheduleForm] = {
     this.getScheduleByRoom(data.idRoom.toInt).map(listSchedule => {
       val listScheduleinTime: List[Schedule] = listSchedule.filter(schedule => {
         ((schedule.date == data.date) && (schedule.startAt < data.endAt && data.endAt <= schedule.endAt)) || ((schedule.date == data.date) && (schedule.startAt < data.startAt && data.startAt <= schedule.endAt))
@@ -44,7 +44,9 @@ class ScheduleRepository {
           Symbol("startAt") -> data.startAt,
           Symbol("endAt") -> data.endAt,
           Symbol("date") -> data.date,
-          Symbol("ticketPrice") -> data.ticketPrice)
+          Symbol("ticketPrice") -> data.ticketPrice,
+          Symbol("quantityTicket") -> totalSeat,
+          Symbol("remainingTicket") -> totalSeat)
         Some(data)
       } else None
     }).get
