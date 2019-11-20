@@ -14,15 +14,9 @@ class ScheduleRepository {
       Schedule.findAll().reverse
     }
 
-  def getSchedule(id: Int): Seq[Schedule] = {
-    Schedule.findAllByIds(id)
+  def getSchedule(id: Int): Option[Schedule] = {
+    Schedule.findById(id)
   }
-
-  //  def getScheduleByName(name: String): Try[Schedule] = {
-  //    Try {
-  //      Schedule.findBy(sqls.eq(Schedule.defaultAlias.name, name)).get
-  //    }
-  //  }
 
   def getScheduleByRoom(idRoom: Int): Try[List[Schedule]] = {
     Try {

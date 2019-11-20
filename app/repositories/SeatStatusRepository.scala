@@ -20,4 +20,9 @@ class SeatStatusRepository {
     true
   }
 
+  def getSeatStatus(idRoom: Int, startAt: String, date: String): Try[List[SeatStatus]] = {
+    Try {
+      SeatStatus.findAllBy(sqls.eq(SeatStatus.defaultAlias.idRoom, idRoom))
+    }
+  }
 }

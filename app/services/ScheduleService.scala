@@ -12,7 +12,6 @@ class ScheduleService @Inject() (scheduleRepository: ScheduleRepository, roomRep
 
   def addSchedule(data: AddScheduleForm): Boolean = {
     val room = roomRepository.getRoom(data.idRoom.toInt).get
-    println("roooom: " + room)
     scheduleRepository.addSchedule(data, room.totalSeat.toInt) match {
       case Some(newSchedule) => {
         val idRoom = newSchedule.idRoom.toInt

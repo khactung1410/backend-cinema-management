@@ -35,7 +35,6 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
             print(data)
             Conflict(Json.obj("message" -> s"There was a schedule already exist at that period of time!"))
           }
-
         }
     }
     AddScheduleForm.addScheduleForm.bindFromRequest().fold(error, success)
