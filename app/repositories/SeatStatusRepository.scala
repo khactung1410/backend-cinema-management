@@ -22,7 +22,7 @@ class SeatStatusRepository {
 
   def getSeatStatus(idRoom: Int, startAt: String, date: String): Try[List[SeatStatus]] = {
     Try {
-      SeatStatus.findAllBy(sqls.eq(SeatStatus.defaultAlias.idRoom, idRoom))
+      SeatStatus.findAllBy(sqls.eq(SeatStatus.defaultAlias.idRoom, idRoom).and(sqls.eq(SeatStatus.defaultAlias.startAt, startAt)).and(sqls.eq(SeatStatus.defaultAlias.date, date)))
     }
   }
 }

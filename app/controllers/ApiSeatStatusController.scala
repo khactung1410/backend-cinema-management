@@ -23,6 +23,7 @@ class ApiSeatStatusController @Inject() (cc: ControllerComponents, scheduleRepos
         seatStatusService.getBySchedule(idSchedule) match {
           case listSeatStatus: List[SeatStatus] => {
             println("listStatus: " + listSeatStatus)
+            println(listSeatStatus.length)
             val obj = Json.obj("listSeatStatus" -> listSeatStatus)
             Ok(obj)
           }
@@ -30,7 +31,6 @@ class ApiSeatStatusController @Inject() (cc: ControllerComponents, scheduleRepos
             Conflict(Json.obj("message" -> s"No seatStatus found with this schedule!"))
           }
         }
-        BadRequest(Json.obj("message" -> "You're not login!"))
       } else {
         BadRequest(Json.obj("message" -> "You're not login!"))
       }

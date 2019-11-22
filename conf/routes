@@ -26,6 +26,9 @@ GET /api/room                      controllers.ApiRoomController.getAll()
 
 GET /api/seatstatus                controllers.ApiSeatStatusController.getBySchedule()
 
+GET /api/seat                      controllers.ApiSeatController.getSeatByRoom()
+
+
 # Map static resources from the /public folder to the /assets URL path
 #GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
