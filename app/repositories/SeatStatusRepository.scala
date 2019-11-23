@@ -25,4 +25,10 @@ class SeatStatusRepository {
       SeatStatus.findAllBy(sqls.eq(SeatStatus.defaultAlias.idRoom, idRoom).and(sqls.eq(SeatStatus.defaultAlias.startAt, startAt)).and(sqls.eq(SeatStatus.defaultAlias.date, date)))
     }
   }
+
+  def changeStatus(id: Int): Int = {
+    SeatStatus.updateById(id).withAttributes({
+      Symbol("status") -> "NOT_EMPTY"
+    })
+  }
 }

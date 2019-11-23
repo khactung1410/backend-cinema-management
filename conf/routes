@@ -24,6 +24,7 @@ GET /api/schedule/search            controllers.ApiScheduleController.getAll()
 
 GET /api/room                      controllers.ApiRoomController.getAll()
 
+PUT /api/seatstatus                controllers.ApiSeatStatusController.changeStatus()
 GET /api/seatstatus                controllers.ApiSeatStatusController.getBySchedule()
 
 GET /api/seat                      controllers.ApiSeatController.getSeatByRoom()
