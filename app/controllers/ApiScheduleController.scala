@@ -1,6 +1,6 @@
 package controllers
 
-import form.{ AddMovieForm, AddScheduleForm, EditMovieForm }
+import form.{ AddMovieForm, AddScheduleForm, EditMovieForm, EditScheduleForm }
 import javax.inject.{ Inject, Singleton }
 import models.Schedule
 import play.api.data.Form
@@ -38,6 +38,29 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
         }
     }
     AddScheduleForm.addScheduleForm.bindFromRequest().fold(error, success)
+  }
+
+  def edit() = Action { implicit request =>
+    val error = {
+      _: Form[EditScheduleForm] =>
+        println("ERROR MESSAGE: NOT MAPPING EDIT SCHEDULE FORM AND DATA FROM CLIENT")
+        BadRequest
+    }
+    val success = {
+      data: EditScheduleForm =>
+        println(data)
+        scheduleRepository.editSchedule(data) match {
+          case 0 => {
+            BadRequest(Json.obj("message" -> s"Schedule with id ${data.id} is not update!"))
+          }
+          case _ =>
+            val obj = Json.obj(
+              "ok" -> true,
+              "text" -> Json.obj())
+            Ok(obj)
+        }
+    }
+    EditScheduleForm.editScheduleForm.bindFromRequest().fold(error, success)
   }
 
   def getAll() = Action { implicit request =>

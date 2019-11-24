@@ -1,5 +1,5 @@
 package repositories
-import form.{ AddMovieForm, AddScheduleForm, EditMovieForm }
+import form.{ AddMovieForm, AddScheduleForm, EditMovieForm, EditScheduleForm }
 import javax.inject.Singleton
 import models.Schedule
 import scalikejdbc.sqls
@@ -22,6 +22,20 @@ class ScheduleRepository {
     Try {
       Schedule.findAllBy(sqls.eq(Schedule.defaultAlias.idRoom, idRoom))
     }
+  }
+
+  def editSchedule(data: EditScheduleForm): Int = {
+    Schedule.updateById(data.id.toInt).withAttributes(
+      Symbol("name") -> data.name,
+      Symbol("idMovie") -> data.idMovie,
+      Symbol("idRoom") -> data.idRoom,
+      Symbol("room") -> data.room,
+      Symbol("startAt") -> data.startAt,
+      Symbol("endAt") -> data.endAt,
+      Symbol("date") -> data.date,
+      Symbol("ticketPrice") -> data.ticketPrice,
+      Symbol("quantityTicket") -> data.quantityTicket,
+      Symbol("remainingTicket") -> data.remainingTicket)
   }
 
   def addSchedule(data: AddScheduleForm, totalSeat: Int): Option[AddScheduleForm] = {
