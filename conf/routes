@@ -6,6 +6,7 @@
 #GET /api/post/:postId               controllers.ApiController.getPost(postId: Int)
 #GET /api/post/:postId/comments      controllers.ApiController.getComments(postId: Int)
 
+GET /api/user                       controllers.ApiController.getAll()
 GET /api/user/:id                   controllers.ApiController.getUser(id: Int)
 POST /api/user/login                controllers.ApiController.login()
 POST /api/user/register             controllers.ApiController.register()

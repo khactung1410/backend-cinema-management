@@ -68,9 +68,14 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
       if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {
         request.rawQueryString.contains("name") match {
           case true => {
-            val arrayParams = request.rawQueryString.split("&")
-            val current_page = arrayParams(0).substring(5).toInt
-            val searchName = arrayParams(1).substring(5).replace("%20", " ")
+            var current_page = 1
+            var searchName = ""
+            request.queryString.map {
+              case (k, v) => {
+                if (k == "page") current_page = v(0).toInt
+                if (k == "name") searchName = v(0)
+              }
+            }
             val per_page = 10
             scheduleRepository.getAllSchedule().map((listSchedules: List[Schedule]) => {
               val listSearchedSchedules = listSchedules.filter(schedule => schedule.name.toLowerCase().contains(searchName.toLowerCase()))

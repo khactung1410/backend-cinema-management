@@ -4,7 +4,7 @@ import play.api.libs.json.Json
 import scalikejdbc._
 import skinny.orm.SkinnyCRUDMapper
 
-case class User(id: Int, username: String, password: String, fullname: String, address: String, phone: String)
+case class User(id: Int, username: String, password: String, role: String, fullname: String, address: String, phone: String)
 
 object User extends SkinnyCRUDMapper[User] {
   implicit val format = Json.format[User]
@@ -15,6 +15,7 @@ object User extends SkinnyCRUDMapper[User] {
     id = rs.get(n.id),
     username = rs.get(n.username),
     password = rs.get(n.password),
+    role = rs.get(n.role),
     fullname = rs.get(n.fullname),
     address = rs.get(n.address),
     phone = rs.get(n.phone))
