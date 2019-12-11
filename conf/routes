@@ -7,6 +7,8 @@
 #GET /api/post/:postId/comments      controllers.ApiController.getComments(postId: Int)
 
 GET /api/user                       controllers.ApiController.getAll()
+GET /api/user/search                controllers.ApiController.getAll()
+GET /api/user/delete/:id            controllers.ApiController.delete(id: Int)
 GET /api/user/:id                   controllers.ApiController.getUser(id: Int)
 POST /api/user/login                controllers.ApiController.login()
 POST /api/user/register             controllers.ApiController.register()

@@ -40,4 +40,10 @@ class UserRepository {
           false
       }.get
   }
+
+  def deleteUser(id: Int): Try[Int] = {
+    Try {
+      User.deleteById(id)
+    }
+  }
 }

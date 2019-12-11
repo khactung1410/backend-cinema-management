@@ -126,4 +126,20 @@ class ApiController @Inject() (cc: ControllerComponents, userRepository: UserRep
     }
     RegisterForm.registerForm.bindFromRequest().fold(error, success)
   }
+
+  def delete(id: Int) = Action { implicit request =>
+    {
+      println("TUNGGGGGG: " + id)
+      if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {
+        userRepository.deleteUser(id).map((result: Int) => {
+          val obj = Json.obj(
+            "ok" -> true,
+            "text" -> Json.obj())
+          Ok(obj)
+        }).get
+      } else {
+        BadRequest(Json.obj("message" -> "You're not login!"))
+      }
+    }
+  }
 }
