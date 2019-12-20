@@ -26,11 +26,13 @@ GET /api/schedule/delete/:id        controllers.ApiScheduleController.delete(id:
 GET /api/schedule/search            controllers.ApiScheduleController.getAll()
 PUT /api/schedule                   controllers.ApiScheduleController.edit()
 
+POST /api/room/add                  controllers.ApiRoomController.add()
+GET /api/room                       controllers.ApiRoomController.getAll()
+GET /api/room/search                controllers.ApiRoomController.getAll()
+GET /api/room/delete/:id            controllers.ApiRoomController.delete(id: Int)
 
-GET /api/room                      controllers.ApiRoomController.getAll()
-
-PUT /api/seatstatus                controllers.ApiSeatStatusController.changeStatus()
-GET /api/seatstatus                controllers.ApiSeatStatusController.getBySchedule()
+PUT /api/seatstatus                 controllers.ApiSeatStatusController.changeStatus()
+GET /api/seatstatus                 controllers.ApiSeatStatusController.getBySchedule()
 
 GET /api/seat                      controllers.ApiSeatController.getSeatByRoom()
 
