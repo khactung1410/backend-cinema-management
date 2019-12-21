@@ -11,7 +11,7 @@ import scala.util.Try
 class ScheduleService @Inject() (scheduleRepository: ScheduleRepository, roomRepository: RoomRepository, seatRepository: SeatRepository, seatStatusRepository: SeatStatusRepository) {
 
   def addSchedule(data: AddScheduleForm): Boolean = {
-    val room = roomRepository.getRoom(data.idRoom.toInt).get
+    val room = roomRepository.getRoom(data.idRoom.toInt)(0)
     scheduleRepository.addSchedule(data, room.totalSeat.toInt) match {
       case Some(newSchedule) => {
         val idRoom = newSchedule.idRoom.toInt

@@ -1,5 +1,5 @@
 package repositories
-import form.AddRoomForm
+import form.{ AddRoomForm, EditRoomForm }
 import javax.inject.Singleton
 import models.Room
 import scalikejdbc.sqls
@@ -14,8 +14,8 @@ class RoomRepository {
       Room.findAll()
     }
 
-  def getRoom(id: Int): Option[Room] = {
-    Room.findById(id)
+  def getRoom(id: Int): Seq[Room] = {
+    Room.findAllByIds(id)
   }
 
   def deleteRoom(id: Int): Try[Int] = {
@@ -46,5 +46,16 @@ class RoomRepository {
           }
           false
       }.get
+  }
+
+  def editRoom(data: EditRoomForm): Int = {
+    println("tung: " + data)
+    Room.updateById(data.id.toInt).withAttributes(
+      Symbol("name") -> data.name,
+      Symbol("totalSeat") -> data.totalSeat,
+      Symbol("square") -> data.square,
+      Symbol("location") -> data.location,
+      Symbol("typeRoom") -> data.typeRoom,
+      Symbol("updateAt") -> data.updateAt)
   }
 }

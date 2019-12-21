@@ -1,6 +1,6 @@
 package controllers
 
-import form.{ AddRoomForm, AddScheduleForm, EditMovieForm }
+import form.{ AddRoomForm, AddScheduleForm, EditMovieForm, EditRoomForm }
 import javax.inject.{ Inject, Singleton }
 import models.Room
 import play.api.data.Form
@@ -37,6 +37,10 @@ class ApiRoomController @Inject() (cc: ControllerComponents, roomRepository: Roo
         }
     }
     AddRoomForm.addRoomForm.bindFromRequest().fold(error, success)
+  }
+
+  def getRoom(id: Int) = Action { implicit request =>
+    Ok(Json.toJson(roomRepository.getRoom(id)))
   }
 
   def getAll() = Action { implicit request =>
@@ -95,6 +99,29 @@ class ApiRoomController @Inject() (cc: ControllerComponents, roomRepository: Roo
         BadRequest(Json.obj("message" -> "You're not login!"))
       }
     }
+  }
+
+  def edit() = Action { implicit request =>
+    val error = {
+      _: Form[EditRoomForm] =>
+        println("ERROR MESSAGE: NOT MAPPING EDIT ROOM FORM AND DATA FROM CLIENT")
+        BadRequest
+    }
+    val success = {
+      data: EditRoomForm =>
+        println(data)
+        roomRepository.editRoom(data) match {
+          case 0 => {
+            BadRequest(Json.obj("message" -> s"Room with id ${data.id} is not update!"))
+          }
+          case _ =>
+            val obj = Json.obj(
+              "ok" -> true,
+              "text" -> Json.obj())
+            Ok(obj)
+        }
+    }
+    EditRoomForm.editRoomForm.bindFromRequest().fold(error, success)
   }
 
   def delete(id: Int) = Action { implicit request =>
