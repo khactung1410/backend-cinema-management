@@ -63,6 +63,10 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
     EditScheduleForm.editScheduleForm.bindFromRequest().fold(error, success)
   }
 
+  def getSchedule(id: Int) = Action { implicit request =>
+    Ok(Json.toJson(scheduleRepository.getSchedule(id)))
+  }
+
   def getAll() = Action { implicit request =>
     {
       if (request.headers.apply("Authorization") == "Bearer fake-jwt-token") {

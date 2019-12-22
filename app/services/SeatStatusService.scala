@@ -11,7 +11,7 @@ import scala.util.Try
 class SeatStatusService @Inject() (scheduleRepository: ScheduleRepository, roomRepository: RoomRepository, seatRepository: SeatRepository, seatStatusRepository: SeatStatusRepository) {
 
   def getBySchedule(idSchedule: Int): List[SeatStatus] = {
-    val schedule = scheduleRepository.getSchedule(idSchedule).get
+    val schedule = scheduleRepository.getSchedule(idSchedule)(0)
     println(schedule)
     seatStatusRepository.getSeatStatus(schedule.idRoom, schedule.startAt, schedule.date).map((listSeatStatus: List[SeatStatus]) => {
       listSeatStatus

@@ -22,6 +22,7 @@ PUT /api/movie/edit                 controllers.ApiMovieController.edit()
 
 POST /api/schedule/add              controllers.ApiScheduleController.add()
 GET /api/schedule                   controllers.ApiScheduleController.getAll()
+GET /api/schedule/:id               controllers.ApiScheduleController.getSchedule(id: Int)
 GET /api/schedule/delete/:id        controllers.ApiScheduleController.delete(id: Int)
 GET /api/schedule/search            controllers.ApiScheduleController.getAll()
 PUT /api/schedule                   controllers.ApiScheduleController.edit()
