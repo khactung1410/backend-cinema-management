@@ -11,7 +11,7 @@ class RoomRepository {
 
   def getAllRoom(): Try[List[Room]] =
     Try {
-      Room.findAll()
+      Room.findAll().reverse
     }
 
   def getRoom(id: Int): Seq[Room] = {

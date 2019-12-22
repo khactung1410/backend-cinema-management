@@ -33,6 +33,13 @@ GET /api/room/:id                   controllers.ApiRoomController.getRoom(id: In
 GET /api/room/delete/:id            controllers.ApiRoomController.delete(id: Int)
 PUT /api/room/edit                  controllers.ApiRoomController.edit()
 
+POST /api/genre/add                  controllers.ApiGenreController.add()
+GET /api/genre                       controllers.ApiGenreController.getAll()
+GET /api/genre/search                controllers.ApiGenreController.getAll()
+GET /api/genre/:id                   controllers.ApiGenreController.getGenre(id: Int)
+GET /api/genre/delete/:id            controllers.ApiGenreController.delete(id: Int)
+PUT /api/genre/edit                  controllers.ApiGenreController.edit()
+
 PUT /api/seatstatus                 controllers.ApiSeatStatusController.changeStatus()
 GET /api/seatstatus                 controllers.ApiSeatStatusController.getBySchedule()
 
