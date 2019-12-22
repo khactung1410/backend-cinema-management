@@ -15,7 +15,7 @@ class MovieRepository {
     }
   }
 
-  def addMovie(data: AddMovieForm): Boolean = {
+  def addMovie(data: AddMovieForm, filename: String): Boolean = {
     this.getMovieByName(data.name).map(_ => true)
       .recover {
         case _ =>
@@ -25,7 +25,9 @@ class MovieRepository {
               Symbol("genre") -> data.genre,
               Symbol("director") -> data.director,
               Symbol("publicYear") -> data.publicYear,
-              Symbol("description") -> data.description)
+              Symbol("description") -> data.description,
+              Symbol("trailer") -> data.trailer,
+              Symbol("poster") -> filename)
           }
           false
       }.get
