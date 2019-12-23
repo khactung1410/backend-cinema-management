@@ -23,6 +23,11 @@ GET /api/schedule/search            controllers.ApiScheduleController.getAll()
 GET /api/schedule/:id               controllers.ApiScheduleController.getSchedule(id: Int)
 PUT /api/schedule                   controllers.ApiScheduleController.edit()
 
+POST /api/bill/add                  controllers.ApiBillController.add()
+GET /api/bill                       controllers.ApiBillController.getAll()
+GET /api/bill/delete/:id            controllers.ApiBillController.delete(id: Int)
+GET /api/bill/:id                   controllers.ApiBillController.getBill(id: Int)
+
 POST /api/room/add                  controllers.ApiRoomController.add()
 GET /api/room                       controllers.ApiRoomController.getAll()
 GET /api/room/search                controllers.ApiRoomController.getAll()
