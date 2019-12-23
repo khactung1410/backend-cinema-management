@@ -91,7 +91,7 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
             }
             val per_page = 10
             movieRepository.getAllMovie().map((listMovies: List[Movie]) => {
-              val listSearchedMovies = listMovies.filter(movie => movie.name.toLowerCase().contains(searchName.toLowerCase()))
+              val listSearchedMovies = listMovies.filter(movie => movie.name.toLowerCase().contains(searchName.toLowerCase()) || movie.genre.toLowerCase().contains(searchName.toLowerCase()) || movie.director.toLowerCase().contains(searchName.toLowerCase()))
               val total = listSearchedMovies.length
               var total_page = 0
               if (total % per_page == 0) total_page = total / per_page
@@ -103,7 +103,7 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
                 "total" -> total,
                 "total_page" -> total_page,
                 "movies" -> responseListMovie,
-                "allMovies" -> listMovies,
+                "allMovies" -> listSearchedMovies,
                 "searchingName" -> searchName)
               Ok(obj)
             }).get
