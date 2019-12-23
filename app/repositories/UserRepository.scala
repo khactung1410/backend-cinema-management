@@ -1,7 +1,7 @@
 package repositories
-import form.RegisterForm
+import form.{ EditUserForm, RegisterForm }
 import javax.inject.Singleton
-import models.{ User }
+import models.User
 import org.mindrot.jbcrypt.BCrypt
 import scalikejdbc.sqls
 
@@ -22,6 +22,16 @@ class UserRepository {
     Try {
       User.findBy(sqls.eq(User.defaultAlias.username, username)).get
     }
+  }
+
+  def editUser(data: EditUserForm): Int = {
+    println("tung: " + data)
+    User.updateById(data.id.toInt).withAttributes(
+      Symbol("fullname") -> data.fullname,
+      Symbol("address") -> data.address,
+      Symbol("phone") -> data.phone,
+      Symbol("username") -> data.username,
+      Symbol("role") -> data.role)
   }
 
   def registerUser(data: RegisterForm): Boolean = {

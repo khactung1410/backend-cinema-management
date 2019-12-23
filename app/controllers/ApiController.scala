@@ -1,6 +1,6 @@
 package controllers
 
-import form.{ LoginForm, RegisterForm }
+import form.{ EditUserForm, LoginForm, RegisterForm }
 import javax.inject.{ Inject, Singleton }
 import models.User
 import org.mindrot.jbcrypt.BCrypt
@@ -125,6 +125,29 @@ class ApiController @Inject() (cc: ControllerComponents, userRepository: UserRep
         }
     }
     RegisterForm.registerForm.bindFromRequest().fold(error, success)
+  }
+
+  def edit() = Action { implicit request =>
+    val error = {
+      _: Form[EditUserForm] =>
+        println("ERROR MESSAGE: NOT MAPPING EDIT USER FORM AND DATA FROM CLIENT")
+        BadRequest
+    }
+    val success = {
+      data: EditUserForm =>
+        println(data)
+        userRepository.editUser(data) match {
+          case 0 => {
+            BadRequest(Json.obj("message" -> s"User with id ${data.id} is not update!"))
+          }
+          case _ =>
+            val obj = Json.obj(
+              "ok" -> true,
+              "text" -> Json.obj())
+            Ok(obj)
+        }
+    }
+    EditUserForm.editUserForm.bindFromRequest().fold(error, success)
   }
 
   def delete(id: Int) = Action { implicit request =>
