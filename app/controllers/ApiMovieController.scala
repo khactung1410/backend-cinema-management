@@ -7,6 +7,9 @@ import play.api.data.Form
 import play.api.libs.json.Json
 import play.api.mvc.{ AbstractController, ControllerComponents }
 import repositories.MovieRepository
+import java.text.SimpleDateFormat
+import java.nio.file.Paths
+import java.util.Calendar
 
 import scala.util.Try
 
@@ -14,7 +17,7 @@ import scala.util.Try
 class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: MovieRepository)
   extends AbstractController(cc) {
 
-  def add() = Action { implicit request =>
+  def add() = Action(parse.multipartFormData) { implicit request =>
     val error = {
       _: Form[AddMovieForm] =>
         println("ERROR MESSAGE: NOT MAPPING ADD MOVIE FORM AND DATA FROM CLIENT")
@@ -22,17 +25,25 @@ class ApiMovieController @Inject() (cc: ControllerComponents, movieRepository: M
     }
     val success = {
       data: AddMovieForm =>
-        movieRepository.addMovie(data) match {
-          case true => {
-            print(data)
-            BadRequest(Json.obj("message" -> s"Movie with name ${data.name} is already taken!"))
+        {
+          val format = new SimpleDateFormat("yyMMddHHmmss")
+          val filename = format.format(Calendar.getInstance().getTime()) + ".jpg"
+          request.body.file("poster").map(picture => {
+            picture.ref.copyTo(Paths.get(s"public/upload/$filename"), replace = true)
+          })
+
+          movieRepository.addMovie(data, s"/upload/$filename") match {
+            case true => {
+              print(data)
+              BadRequest(Json.obj("message" -> s"Movie with name ${data.name} is already taken!"))
+            }
+            case _ =>
+              print(data)
+              val obj = Json.obj(
+                "ok" -> true,
+                "text" -> Json.obj())
+              Ok(obj)
           }
-          case _ =>
-            print(data)
-            val obj = Json.obj(
-              "ok" -> true,
-              "text" -> Json.obj())
-            Ok(obj)
         }
     }
     AddMovieForm.addMovieForm.bindFromRequest().fold(error, success)
