@@ -82,7 +82,7 @@ class ApiScheduleController @Inject() (cc: ControllerComponents, scheduleReposit
             }
             val per_page = 10
             scheduleRepository.getAllSchedule().map((listSchedules: List[Schedule]) => {
-              val listSearchedSchedules = listSchedules.filter(schedule => schedule.name.toLowerCase().contains(searchName.toLowerCase()))
+              val listSearchedSchedules = listSchedules.filter(schedule => schedule.name.toLowerCase().contains(searchName.toLowerCase()) || schedule.date.toLowerCase().contains(searchName.toLowerCase()) || schedule.startAt.toLowerCase().contains(searchName.toLowerCase()))
               val total = listSearchedSchedules.length
               var total_page = 0
               if (total % per_page == 0) total_page = total / per_page
